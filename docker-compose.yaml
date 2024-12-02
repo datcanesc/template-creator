@@ -1,0 +1,69 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: template-creator-postgres
+    env_file:
+      - .env
+
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    networks:
+      - mine
+
+  app:
+    image: backend-image
+    build: ./backend
+    env_file:
+      - .env
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://template-creator-postgres:${POSTGRES_PORT}/${POSTGRES_DATABASE}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${BACKEND_HOST}:8070"
+    depends_on:
+      - db
+    networks:
+      - mine
+
+
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend/src:/usr/src/app/src
+      - ./frontend/public:/usr/src/app/public
+      - ./frontend/package.json:/usr/src/app/package.json
+    env_file:
+      - .env
+    ports:
+      - "${FRONTEND_HOST}:3000"
+    environment:
+      CHOKIDAR_USEPOLLING: true
+      REACT_APP_BACKEND_URL: ${BASE_URL}:${BACKEND_HOST}
+      REACT_APP_KEYCLOAK_CLIENT: ${KEYCLOAK_CLIENT}
+      REACT_APP_REDIRECT_URI: ${BASE_URL}:${FRONTEND_HOST}/home
+      REACT_APP_KEYCLOAK_HOST: ${BASE_URL}
+      REACT_APP_KEYCLOAK_PORT: ${KEYCLOAK_PORT}
+      REACT_APP_KEYCLOAK_REALM: ${KEYCLOAK_REALM}
+      REACT_APP_REFLESH_TOKEN_TIME: ${REFLESH_TOKEN_TIME}
+    depends_on:
+      - app
+    networks:
+      - mine
+
+
+volumes:
+  pgdata:
+  pgadmin-data:
+
+
+networks:
+  mine:
+    external: true

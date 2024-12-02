@@ -1,0 +1,98 @@
+.template-list-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ant-spin-container {
+    width: 1400px;
+}
+
+.template-list-name-button {
+    min-width: 150px;
+}
+
+.template-list-actions-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+}
+
+.template-list-delete-button:hover{
+    background-color: #ff4d4f !important;
+    color: #ffffff !important;
+}
+
+.ant-table-column-sorter{
+    color: #80A4DB !important;
+}
+
+
+/* Search-bar */
+.search-icon{
+    color: #80A4DB;
+}
+
+.search-bar-container {
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.search-bar {
+    margin: 20px;
+    width: 700px;
+    border-radius: 20px;
+}
+
+
+/* inside the modal */
+
+.field-editor-modal-container {
+    display: flex;
+    gap: 10px; 
+    margin-bottom: 17px;
+}
+
+.template-edit-model__template-name-input,
+.template-edit-model__template-desciption-input{
+    width: 100%;
+}
+
+.field-editor__field-names-input {
+    width: 54%;
+}
+
+.field-editor__field-types-select{
+    width: 30%;
+}
+
+.field-editor__is-required-checkbox{
+    scale: 1.2;
+}
+
+.field-editor-delete-field-icon {
+    scale: 0.8;
+    padding: 8px;
+}
+
+.field-editor-delete-field-icon:hover{
+    background-color: #ff4d4f !important;
+    color: #ffffff !important;
+}
+
+.ant-modal-close-x:hover {
+    color: #ff4d4f; /* Hover durumunda renk */
+}
+
+.yeni-alan-ekle{
+    background-color: #1677ff;
+}
+
+.ant-modal-close-x {
+    color: #ffffff; /* İstediğiniz rengi buraya ekleyin */
+}
+
+.ant-select-dropdown {
+    background-color: #001F3F ; /* İstediğiniz rengi belirtin */
+}

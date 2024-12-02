@@ -1,0 +1,21 @@
+body {
+  background-color: #0a192f;
+}
+
+p {
+  color: #FFFFFF;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+.app-template-list{
+  flex: 1;
+  overflow-y: auto; 
+}
+
+.App {
+  text-align: center;
+}

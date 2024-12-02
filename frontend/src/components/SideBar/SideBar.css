@@ -1,0 +1,15 @@
+.app-name {
+    color: white;
+    text-align: center;
+    padding: 16px;
+}
+
+.side-bar{
+    text-align: center;
+}
+
+.side-bar-add-new-template-button{
+    width: 90%;
+    margin-top: 10px;
+    cursor: pointer;
+}
